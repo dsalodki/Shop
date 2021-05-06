@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OperatorViewModel>
+
+@{
+    ViewBag.Title = "Create operator";
+    Layout = "_Layout";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<button onclick="Create()">Создать</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>UserName</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var @operator in Model)
+        {
+            <tr id="tr@(@operator.Id)">
+                <td>@(@operator.UserName)</td>
+                <td>
+                    <button onclick="Remove(@(@operator.Id))">Удалить</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function Create() {
+        window.location.href = '@Url.Action("Create", "Admin")';
+    }
+
+        function Remove(id) {
+            if (confirm('Действительно хотите удалить?')) {
+                $.ajax({
+                    url: '@Url.Action("Delete", "Admin")',
+                    type: 'POST',
+                    data: { id: id},
+                    success: function () {
+                        $('#tr' + id).remove();
+                    }
+                });
+            }
+    }
+</script>

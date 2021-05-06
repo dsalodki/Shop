@@ -22,6 +22,7 @@ namespace DAL.Models
         public virtual DbSet<Dimension> Dimensions { get; set; }
         public virtual DbSet<Good> Goods { get; set; }
         public virtual DbSet<GoodsCat> GoodsCats { get; set; }
+        public virtual DbSet<Operator> Operators { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrdersList> OrdersLists { get; set; }
         public virtual DbSet<Provider> Providers { get; set; }
@@ -87,13 +88,15 @@ namespace DAL.Models
 
                 entity.Property(e => e.Price)
                     .HasColumnType("NUMBER")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("PRICE");
+                    //.ValueGeneratedOnAdd()
+                    .HasColumnName("PRICE")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Val)
                     .HasColumnType("NUMBER")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("VAL");
+                    //.ValueGeneratedOnAdd()
+                    .HasColumnName("VAL")
+                    .ValueGeneratedNever();
 
                 entity.HasOne(d => d.Goods)
                     .WithMany(p => p.DecommLogs)
@@ -167,8 +170,9 @@ namespace DAL.Models
 
                 entity.Property(e => e.ImpPeriod)
                     .HasColumnType("NUMBER(38)")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("IMP_PERIOD");
+                    //.ValueGeneratedOnAdd()
+                    .HasColumnName("IMP_PERIOD")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ImpTime)
                     .HasColumnType("NUMBER")
@@ -183,8 +187,9 @@ namespace DAL.Models
 
                 entity.Property(e => e.Price)
                     .HasColumnType("NUMBER")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("PRICE");
+                    //.ValueGeneratedOnAdd()
+                    .HasColumnName("PRICE")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ProviderId)
                     .HasColumnType("NUMBER")
@@ -199,13 +204,15 @@ namespace DAL.Models
 
                 entity.Property(e => e.Val)
                     .HasColumnType("NUMBER")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("VAL");
+                    //.ValueGeneratedOnAdd()
+                    .HasColumnName("VAL")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ValDelivered)
                     .HasColumnType("NUMBER")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("VAL_DELIVERED");
+                    //.ValueGeneratedOnAdd()
+                    .HasColumnName("VAL_DELIVERED")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Weight)
                     .HasColumnType("NUMBER")
@@ -247,6 +254,30 @@ namespace DAL.Models
                     .IsUnicode(false)
                     .ValueGeneratedOnAdd()
                     .HasColumnName("NAME");
+            });
+
+            modelBuilder.Entity<Operator>(entity =>
+            {
+                entity.ToTable("OPERATOR");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("NAME");
+
+                entity.Property(e => e.Pwd)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("PWD");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -304,13 +335,15 @@ namespace DAL.Models
 
                 entity.Property(e => e.Price)
                     .HasColumnType("NUMBER")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("PRICE");
+                    //.ValueGeneratedOnAdd()
+                    .HasColumnName("PRICE")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Val)
                     .HasColumnType("NUMBER")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("VAL");
+                    //.ValueGeneratedOnAdd()
+                    .HasColumnName("VAL")
+                    .ValueGeneratedNever();
 
                 entity.HasOne(d => d.Goods)
                     .WithMany()
@@ -363,6 +396,8 @@ namespace DAL.Models
                     .ValueGeneratedOnAdd()
                     .HasColumnName("PHONE");
             });
+
+            modelBuilder.HasSequence("OPERATOR_SEQ");
 
             modelBuilder.HasSequence("SEQ_CLIENTS");
 

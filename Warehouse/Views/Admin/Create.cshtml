@@ -1,0 +1,31 @@
+﻿@model OperatorViewModel
+
+@{
+    ViewBag.Title = "Create operator";
+    Layout = "_Layout";
+}
+
+<h2>Create operator</h2>
+
+@using (Html.BeginForm("Create", "Admin", FormMethod.Post))
+{
+    <table>
+        <thead>
+        <tr>
+            <th>UserName</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                @Html.TextBoxFor(x => x.UserName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Создать</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+}

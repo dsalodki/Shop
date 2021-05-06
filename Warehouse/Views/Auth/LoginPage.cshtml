@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model AuthViewModel
+
+@using (Html.BeginForm("LoginPage", "Auth", FormMethod.Post))
+{
+<table>
+    <thead>
+        <tr>
+            <th>UserName</th>
+            <th>Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.TextBoxFor(m=>m.UserName)
+            </td>
+            <td>
+                @Html.TextBoxFor(m=>m.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Войти</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+}
