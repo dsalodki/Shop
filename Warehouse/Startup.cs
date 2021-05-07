@@ -39,6 +39,7 @@ namespace Warehouse
             services.AddScoped<IOperatorRepository, OperatorRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IGoodsCategoryRepo, GoodsCategoryRepo>();
+            services.AddScoped<IGoodsRepository, GoodsRepository>();
 
             services
         .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

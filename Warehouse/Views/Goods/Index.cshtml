@@ -1,4 +1,70 @@
 ﻿@model IEnumerable<GoodsViewModel>
 
 @{
+    ViewBag.Title = "List od Goods";
+    Layout = "_Layout";
 }
+
+<style>
+    tr:nth-child(even) {background: #CCC}
+    tr:nth-child(odd) {background: #FFF}
+    td {
+        border: solid 1px black;
+    }
+    th {
+        border: solid 1px black;
+        background-color: gray;
+    }
+</style>
+
+<table>
+    <thead>
+    <tr>
+        <th>Действия</th>
+        <th>Артикул</th>
+        <th>Название</th>
+        <th>Категория товара</th>
+        <th>Единица измерения</th>
+        <th>Объём товара (в наличии)</th>
+        <th>Объём товара (доставлено)</th>
+        <th>Стоимость единицы товара</th>
+        <th>Вес товара</th>
+        <th>Дата последней доставки</th>
+        <th>Срок реализации в днях</th>
+        <th>Срок реализации в часах (скоропортящийся товар)</th>
+        <th>Поставщик</th>
+        <th>Признак списания товара</th>
+        <th>Признак наличия скидки</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var goods in Model)
+    {
+        <tr>
+            <td>
+                <button onclick="Edit(@goods.Id)">Редактировать</button>
+            </td>
+            <td>@goods.Idx</td>
+            <td>@goods.Name</td>
+            <td>@goods.GoodsCatName</td>
+            <td>@goods.DimensionName</td>
+            <td>@goods.Val</td>
+            <td>@goods.ValDelivered</td>
+            <td>@goods.Price</td>
+            <td>@goods.Weight</td>
+            <td>@goods.Delivery.ToShortDateString()</td>
+            <td>@goods.ImpPeriod</td>
+            <td>@goods.ImpTime</td>
+            <td>@goods.ProviderName</td>
+            <td>@(goods.Decommissioned == 0 ? "не списан" : "списан")</td>
+            <td>@(goods.Sale == 0 ? "нет" : "есть")</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<script>
+    function Edit(id) {
+        window.location.href = '@Url.Action("Edit", "Goods")/' + id;
+    }
+</script>

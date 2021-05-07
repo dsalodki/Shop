@@ -10,5 +10,10 @@ namespace BLL.Interfaces
     public interface IGoodsRepository
     {
         IEnumerable<Goods> GetAll();
+        Goods Get(decimal id);
+        IEnumerable<Item> GetGoodsCategories();
+        IEnumerable<Item> GetDimensions();
+        IEnumerable<Item> GetProviders();
+        bool Update(Goods goods);
     }
 }
