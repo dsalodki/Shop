@@ -28,7 +28,7 @@ namespace Warehouse.Controllers
         [HttpPost]
         public async Task<IActionResult> LoginPage(AuthViewModel model)
         {
-            if(model.UserName == "admin" && model.Password == "123")
+            if (model.UserName == "admin" && model.Password == "123")
             {
                 //todo: logged as admin
                 var principal = CreateAdmin();
@@ -36,21 +36,14 @@ namespace Warehouse.Controllers
                 return RedirectToAction("Index", "Admin");
             }
 
-            try
+            var user = _repository.SignIn(model.UserName, model.Password);
+            if (user != null)
             {
-                var user = _repository.SignIn(model.UserName, model.Password);
-                if (user != null)
-                {
-                    // todo: logged as operator
+                // todo: logged as operator
 
-                    var principal = CreatePrincipal(user);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            catch (Exception ex)
-            {
-
+                var principal = CreatePrincipal(user);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                return RedirectToAction("Index", "Home");
             }
 
             return View();

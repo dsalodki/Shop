@@ -16,6 +16,7 @@ using BLL;
 using BLL.Interfaces;
 using DAL.Models;
 using Warehouse.Data;
+using BLL.Repositories;
 
 namespace Warehouse
 {
@@ -36,6 +37,7 @@ namespace Warehouse
                 .UseOracleSQLCompatibility("11")));
 
             services.AddScoped<IOperatorRepository, OperatorRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
 
             services
         .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

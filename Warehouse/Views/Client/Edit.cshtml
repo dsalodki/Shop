@@ -1,0 +1,33 @@
+﻿@model ClientViewModel
+
+@{
+    ViewBag.Title = "Edit client";
+    Layout = "_Layout";
+}
+
+<h2>Edit client</h2>
+
+<span style="color: red">@ViewBag.Error</span>
+
+@using (Html.BeginForm("Edit", "Client", FormMethod.Post, new {id = Model.Id}))
+{
+    <table>
+        <thead>
+        <tr>
+            <th>Имя</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                @Html.TextBoxFor(m=>m.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Сохранить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+}

@@ -21,19 +21,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.IsInRole("Operator"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Выйти</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="Index">Клиенты</a>
                             </li>
                         }
-                        else
+                        @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="LoginPage">Войти</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Админка</a>
                             </li>
                         }
                     </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a style="float: right" class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Выйти</a>
+                    }
+                    else
+                    {
+                        <a style="float: right" class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="LoginPage">Войти</a>
+                    }
                 </div>
             </div>
         </nav>

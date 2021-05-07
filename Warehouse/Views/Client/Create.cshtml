@@ -1,0 +1,33 @@
+﻿@model ClientViewModel
+
+@{
+    ViewBag.Title = "Create client";
+    Layout = "_Layout";
+}
+
+<h2>Create client</h2>
+
+<span style="color: red">@ViewBag.Error</span>
+
+@using (Html.BeginForm("Create", "Client", FormMethod.Post))
+{
+    <table>
+        <thead>
+        <tr>
+            <th>Имя</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                @Html.TextBoxFor(m=>m.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Сохранить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+}

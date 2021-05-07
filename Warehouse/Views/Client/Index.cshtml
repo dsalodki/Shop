@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ClientViewModel>
+
+@{
+    ViewBag.Title = "Clients";
+    Layout = "_Layout";
+}
+
+<button onclick="Create()">Создать</button>
+
+<span style="color: red">@ViewBag.Error</span>
+
+<table>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th colspan="2">Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var client in Model)
+    {
+        <tr id="tr@(client.Id)">
+            <td>@client.Name</td>
+            <td>
+                <button onclick="Remove(@client.Id)">Удалить</button>
+                <button onclick="Edit(@client.Id)">Переименовать</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<script>
+    function Create() {
+        window.location.href = '@Url.Action("Create", "Client")';
+    }
+
+    function Remove(id) {
+        if (confirm('Действительно хотите удалить?')) {
+            $.ajax({
+                url: '@Url.Action("Delete", "Client")',
+                type: 'POST',
+                data: { id: id },
+                success: function() {
+                    $('#tr' + id).remove();
+                }
+            });
+        }
+    }
+
+    function Edit(id) {
+        window.location.href = '@Url.Action("Edit", "Client")/' + id;
+    }
+</script>
