@@ -7,6 +7,9 @@ namespace Warehouse.Models
 {
     public class OperatorViewModel
     {
+        public OperatorViewModel()
+        {
+        }
 
         public OperatorViewModel(decimal id, string userName)
         {
