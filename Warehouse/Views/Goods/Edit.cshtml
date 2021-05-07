@@ -10,6 +10,7 @@
     label {
         width: 50%
     }
+
     div {
         border-bottom: 1px solid black;
     }
@@ -17,7 +18,7 @@
 
 <h2>Edit Goods</h2>
 
-@using (Html.BeginForm("Edit", "Goods", FormMethod.Post, new {id = Model.Id}))
+@using (Html.BeginForm("Edit", "Goods", FormMethod.Post, new { id = Model.Id }))
 {
     <div>
         <label for="Idx">Артикул</label>
@@ -53,7 +54,7 @@
     </div>
     <div>
         <label for="Delivery">Дата последней доставки</label>
-        @Html.TextBoxFor(m => m.Delivery)
+        @Html.TextBoxFor(m => m.Delivery, "{0:yyyy-MM-dd}", new { type = "date" })
     </div>
     <div>
         <label for="ImpPeriod">Срок реализации в днях</label>
