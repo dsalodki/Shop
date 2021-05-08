@@ -1,0 +1,39 @@
+﻿@model ProviderViewModel
+
+@{
+    ViewBag.Title = "Edit Provider";
+    Layout = "_Layout";
+}
+
+<style>
+    label {
+        width: 50%
+    }
+
+    div {
+        border-bottom: 1px solid black;
+    }
+</style>
+
+<h2>Edit Provider</h2>
+
+<span style="color: red">@ViewBag.Error</span>
+
+@using (Html.BeginForm("Edit", "Provider", FormMethod.Post, new { id = Model.Id }))
+{
+    <div>
+        <label for="Name">Имя</label>
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+    <div>
+        <label for="Address">Адресс</label>
+        @Html.TextBoxFor(m => m.Address)
+    </div>
+    <div>
+        <label for="Phone">Телефон</label>
+        @Html.TextBoxFor(m => m.Phone)
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+}

@@ -1,0 +1,55 @@
+﻿@model System.Collections.Generic.IEnumerable<Warehouse.Models.ProviderViewModel>
+
+@{
+    ViewBag.Title = "List of Providers";
+    Layout = "_Layout";
+}
+
+<h2>Providers</h2>
+
+<button onclick="Create()">Создать</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>Действия</th>
+            <th>Имя</th>
+            <th>Адрес</th>
+            <th>Телефон</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var provider in Model)
+        {
+            <tr id="tr@(provider.Id)">
+                <td>
+                    <button onclick="Remove(@provider.Id)">Удалить</button>
+                    <button onclick="Edit(@provider.Id)">Редактировать</button>
+                </td>
+                <td>@provider.Name</td>
+                <td>@provider.Address</td>
+                <td>@provider.Phone</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    function Remove(id) {
+        $.ajax({
+            url: '@Url.Action("Delete", "Provider")',
+            type: 'POST',
+            data: { id: id },
+            success: function() {
+                $('#tr' + id).remove();
+            }
+        });
+    }
+
+    function Edit(id) {
+        window.location.href = '@Url.Action("Edit", "Provider")/' + id;
+    }
+
+    function Create() {
+        window.location.href = '@Url.Action("Create", "Provider")';
+    }
+</script>

@@ -41,6 +41,7 @@ namespace Warehouse
             services.AddScoped<IGoodsCategoryRepo, GoodsCategoryRepo>();
             services.AddScoped<IGoodsRepository, GoodsRepository>();
             services.AddScoped<IDimensionRepo, DimensionRepo>();
+            services.AddScoped<IProviderRepo, ProviderRepo>();
 
             services
         .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

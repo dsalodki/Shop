@@ -1,0 +1,29 @@
+﻿@model ProviderViewModel
+
+@{
+    ViewBag.Title = "Create Provider";
+    Layout = "_Layout";
+}
+
+<h2>Create Provider</h2>
+
+<span style="color: red">@ViewBag.Error</span>
+
+@using (Html.BeginForm("Create", "Provider", FormMethod.Post))
+{
+    <div>
+        <label for="Name">Имя</label>
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+    <div>
+        <label for="Address">Адресс</label>
+        @Html.TextBoxFor(m => m.Address)
+    </div>
+    <div>
+        <label for="Phone">Телефон</label>
+        @Html.TextBoxFor(m => m.Phone)
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+}
