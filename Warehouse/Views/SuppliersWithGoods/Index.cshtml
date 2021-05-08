@@ -1,0 +1,44 @@
+﻿@model System.Collections.Generic.IEnumerable<Warehouse.Models.SuppliersWithGoodsViewModel>
+
+@{
+    ViewBag.Title = "Suppliers with Goods";
+    Layout = "_Layout";
+}
+
+<h2>Suppliers with Goods</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Наименование поставщика</th>
+        <th>Товары</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var supplierData in Model)
+    {
+        <tr>
+            <td>@supplierData.SupplierName</td>
+            <td>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Наименование товара</th>
+                        <th>Количество</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var goods in supplierData.Items)
+                    {
+                        <tr>
+                            <td>@goods.Name</td>
+                            <td>@goods.Val</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

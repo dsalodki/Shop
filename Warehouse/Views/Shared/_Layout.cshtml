@@ -38,6 +38,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Provider" asp-action="Index">Поставщики</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Leftovers" asp-action="Index">Остатки</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="SuppliersWithGoods" asp-action="Index">Поставщики с товарами</a>
+                            </li>
                         }
                         @if (User.IsInRole("Admin"))
                         {

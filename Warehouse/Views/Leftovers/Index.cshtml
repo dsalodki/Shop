@@ -1,0 +1,45 @@
+﻿@model Warehouse.Models.LeftoversViewModel
+
+@{
+    ViewBag.Title = "Leftovers";
+    Layout = "_Layout";
+}
+
+<style>
+    label {
+        width: 50%;
+    }
+</style>
+
+<h2>Leftovers</h2>
+
+@using (Html.BeginForm("Index", "Leftovers", FormMethod.Post))
+{
+    <div>
+        <label for="MinVal">Минимальный остаток</label>
+        @Html.TextBoxFor(m=>m.MinVal)
+    </div>
+    <div>
+        <button type="submit">Получить остатки</button>
+    </div>
+}
+@if (Model != null && Model.Leftovers != null)
+{
+    <table>
+        <thead>
+        <tr>
+            <th>Наименование товара</th>
+            <th>Количество на складе</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var leftover in Model.Leftovers)
+        {
+            <tr>
+                <td>@leftover.Name</td>
+                <td>@leftover.Val</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
