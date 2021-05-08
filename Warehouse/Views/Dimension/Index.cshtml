@@ -1,0 +1,32 @@
+﻿@model System.Collections.Generic.IEnumerable<Warehouse.Models.DimensionViewModel>
+
+@{
+    ViewBag.Title = "List of Dimensions";
+    Layout = "_Layout";
+}
+
+<h2>List of Dimensions</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var dimension in Model)
+    {
+        <tr>
+            <td>@dimension.Name</td>
+            <td><button onclick="Edit(@dimension.Id)">Переименовать</button></td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<script>
+    function Edit(id) {
+        window.location.href = '@Url.Action("Edit", "Dimension")/' + id;
+    }
+</script>
