@@ -17,6 +17,8 @@
     }
 </style>
 
+<button onclick="Create()">Создать</button>
+
 <table>
     <thead>
     <tr>
@@ -66,5 +68,9 @@
 <script>
     function Edit(id) {
         window.location.href = '@Url.Action("Edit", "Goods")/' + id;
+    }
+
+    function Create() {
+        window.location.href = '@Url.Action("Create", "Goods")';
     }
 </script>

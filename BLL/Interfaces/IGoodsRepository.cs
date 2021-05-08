@@ -15,5 +15,6 @@ namespace BLL.Interfaces
         IEnumerable<Item> GetDimensions();
         IEnumerable<Item> GetProviders();
         bool Update(Goods goods);
+        void Create(Goods goods);
     }
 }

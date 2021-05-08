@@ -1,0 +1,64 @@
+﻿@using BLL.Models
+@model GoodsViewModel
+
+@{
+    ViewBag.Title = "Create Goods";
+    Layout = "_Layout";
+}
+
+<h2>Create Goods</h2>
+
+@using (Html.BeginForm("Create", "Goods", FormMethod.Post))
+{
+    <div>
+        <label for="Idx">Артикул</label>
+        @Html.TextBoxFor(m => m.Idx)
+    </div>
+    <div>
+        <label for="Name">Название</label>
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+    <div>
+        <label for="GoodsCatId">Категория товара</label>
+        @Html.DropDownListFor(m => m.GoodsCatId, new SelectList((IEnumerable<Item>)ViewData["GoodsCategories"], "Id", "Name"))
+    </div>
+    <div>
+        <label for="DimensionId">Единица измерения</label>
+        @Html.DropDownListFor(m => m.DimensionId, new SelectList((IEnumerable<Item>)ViewData["Dimensions"], "Id", "Name"))
+    </div>
+    <div>
+        <label for="Val">Объём товара (в наличии)</label>
+        @Html.TextBoxFor(m => m.Val)
+    </div>
+    <div>
+        <label for="ValDelivered">Объём товара (доставлено)</label>
+        @Html.TextBoxFor(m => m.ValDelivered)
+    </div>
+    <div>
+        <label for="Price">Стоимость единицы товара</label>
+        @Html.TextBoxFor(m => m.Price)
+    </div>
+    <div>
+        <label for="Weight">Вес товара</label>
+        @Html.TextBoxFor(m => m.Weight)
+    </div>
+    <div>
+        <label for="Delivery">Дата последней доставки</label>
+        @Html.TextBoxFor(m => m.Delivery, "{0:yyyy-MM-dd}", new { type = "date" })
+    </div>
+    <div>
+        <label for="ImpPeriod">Срок реализации в днях</label>
+        @Html.TextBoxFor(m => m.ImpPeriod)
+    </div>
+    <div>
+        <label for="ImpTime">Срок реализации в часах (скоропортящийся товар)</label>
+        @Html.TextBoxFor(m => m.ImpTime)
+    </div>
+    <div>
+        <label for="ProviderId">Поставщик</label>
+        @Html.DropDownListFor(m => m.ProviderId, new SelectList((IEnumerable<Item>)ViewData["Providers"], "Id", "Name"))
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+}

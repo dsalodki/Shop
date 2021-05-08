@@ -53,5 +53,25 @@ namespace Warehouse.Controllers
 
             return BadRequest();
         }
+
+        public IActionResult Create()
+        {
+            ViewData["GoodsCategories"] = _repository.GetGoodsCategories();
+            ViewData["Dimensions"] = _repository.GetDimensions();
+            var providers = _repository.GetProviders().ToList();
+            providers.Insert(0, new Item(null, "Выберите поставщика или оставьте пустым"));
+            ViewData["Providers"] = providers;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(GoodsViewModel model)
+        {
+            var goods = new Goods(0, model.Idx, model.Name, model.GoodsCatId, model.DimensionId, model.ProviderId,
+                model.Val, model.ValDelivered, model.Price, model.Delivery,
+                model.ImpPeriod, model.ImpTime, model.Weight, null, null, null, 0, 0);
+            _repository.Create(goods);
+            return RedirectToAction("Index");
+        }
     }
 }

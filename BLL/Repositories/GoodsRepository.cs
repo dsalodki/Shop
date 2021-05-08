@@ -71,5 +71,26 @@ namespace BLL
             _context.SaveChanges();
             return true;
         }
+
+        public void Create(Goods goods)
+        {
+            var db = new Good();
+            // init
+            db.Idx = goods.Idx;
+            db.Name = goods.Name;
+            db.GoodsCatId = goods.GoodsCatId;
+            db.DimensionId = goods.DimensionId;
+            db.Val = goods.Val;
+            db.ValDelivered = goods.ValDelivered;
+            db.Price = goods.Price;
+            db.Weight = goods.Weight;
+            db.Delivery = goods.Delivery;
+            db.ImpPeriod = goods.ImpPeriod;
+            db.ImpTime = goods.ImpTime;
+            db.ProviderId = goods.ProviderId;
+
+            _context.Add(db);
+            _context.SaveChanges();
+        }
     }
 }
