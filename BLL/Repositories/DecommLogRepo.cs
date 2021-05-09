@@ -30,14 +30,9 @@ namespace BLL.Repositories
 
         public void Sync()
         {
-            var connString = "DATA SOURCE=localhost:1521;PASSWORD=qaz123QAZ!@#;USER ID=ABOBA";
-            using (var conn = new OracleConnection(connString))
-            {
-                conn.Open();
+            var conn = _context.Database.GetDbConnection();
                 conn.Query("shop.create_decomm_log", commandType: CommandType.StoredProcedure);
                 //var hours = conn.Query<double>("select shop.get_goods_exp_h(12) from dual", commandType:CommandType.Text).Single();
-                conn.Close();
-            }
         }
     }
 }
