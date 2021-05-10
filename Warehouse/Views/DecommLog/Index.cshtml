@@ -1,0 +1,26 @@
+﻿@model System.Collections.Generic.IEnumerable<Warehouse.Models.DecommLogsViewModel>
+
+@{
+    ViewBag.Title = "Logs";
+    Layout = "_Layout";
+}
+
+<h2>Logs</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Наименование товара</th>
+        <th>Стоимость</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var log in Model)
+    {
+        <tr>
+            <td>@log.GoodsName</td>
+            <td>@log.Price</td>
+        </tr>
+    }
+    </tbody>
+</table>

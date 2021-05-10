@@ -45,6 +45,7 @@ namespace Warehouse
             services.AddScoped<ILeftoverRepo, LeftoverRepo>();
             services.AddScoped<ISuppliersWithGoodsRepository, SuppliersWithGoodsRepository>();
             services.AddScoped<IFileWithGoodsRepo, FileWithGoodsRepo>();
+            services.AddScoped<IDecommLogRepo, DecommLogRepo>();
 
             services
         .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
