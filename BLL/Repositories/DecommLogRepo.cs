@@ -25,7 +25,7 @@ namespace BLL.Repositories
         public IEnumerable<DecommLog> GetAll()
         {
             // todo : may be use UTC
-            return _context.DecommLogs.Where(x=>x.LogDate == DateTime.Today).Select(x=>new DecommLog(x));
+            return _context.DecommLogs.Where(x=>x.LogDate >= DateTime.Today).Select(x=>new DecommLog(x));
         }
 
         public void Sync()
