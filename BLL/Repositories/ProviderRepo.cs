@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.Interfaces;
 using DAL.Models;
+using Dapper;
+using Microsoft.EntityFrameworkCore;
+using Oracle.ManagedDataAccess.Client;
 using Provider = BLL.Models.Provider;
 
 namespace BLL.Repositories
@@ -22,6 +26,16 @@ namespace BLL.Repositories
         public IEnumerable<Provider> GetAll()
         {
             var db = _context.Providers.Where(x => x.Deleting == 0);
+
+            var conn = _context.Database.GetDbConnection();
+            
+
+            foreach (var one in db)
+            {
+                var phone = conn.Query<string>($"select shop.get_phone({one.Phone}) from dual", commandType:CommandType.Text).Single();
+                one.Phone = phone;
+            }
+
             return db.Select(x => new Provider(x));
         }
 

@@ -33,7 +33,7 @@ namespace Warehouse
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<OracleDBContext>(optionsAction:builder => 
-                builder.UseOracle("DATA SOURCE=localhost:1521;PASSWORD=qaz123QAZ!@#;USER ID=ABOBA", options => options
+                builder.UseOracle("DATA SOURCE=localhost:1521;PASSWORD=aboba;USER ID=ABOBA", options => options
                 .UseOracleSQLCompatibility("11")));
 
             services.AddScoped<IOperatorRepository, OperatorRepository>();
