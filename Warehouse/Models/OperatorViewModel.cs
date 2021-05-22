@@ -11,13 +11,15 @@ namespace Warehouse.Models
         {
         }
 
-        public OperatorViewModel(decimal id, string userName)
+        public OperatorViewModel(decimal id, string userName, string password)
         {
             Id = id;
             UserName = userName;
+            Password = password;
         }
 
         public decimal Id { get; set; }
         public string UserName { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace Warehouse.Controllers
         public IActionResult Index()
         {
             var operators = _repository.GetAll();
-            var viewModel = operators.Select(x => new OperatorViewModel(x.Id, x.UserName));
+            var viewModel = operators.Select(x => new OperatorViewModel(x.Id, x.UserName, x.Passsword));
 
             return View(viewModel);
         }
@@ -42,7 +42,7 @@ namespace Warehouse.Controllers
                 return View();
             }
             // create
-            _repository.Create(model.UserName);
+            _repository.Create(model.UserName, model.Password);
 
             return RedirectToAction("Index");
         }

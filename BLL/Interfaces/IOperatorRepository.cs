@@ -12,7 +12,7 @@ namespace BLL.Interfaces
         public Operator SignIn(string userName, string password);
         IEnumerable<Operator> GetAll();
         bool Exists(string userName);
-        void Create(string userName);
+        void Create(string userName, string password);
         bool Remove(decimal id);
     }
 }

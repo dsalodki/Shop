@@ -21,12 +21,12 @@ namespace BLL
         public Operator SignIn(string userName, string password)
         {
             var user  = _context.Operators.FirstOrDefault(x => x.Name == userName && x.Pwd == password);
-            return user == null ? null : new Operator(user.Id, user.Name);
+            return user == null ? null : new Operator(user.Id, user.Name, user.Pwd);
         }
 
         public IEnumerable<Operator> GetAll()
         {
-            return _context.Operators.Select(x => new Operator(x.Id, x.Name));
+            return _context.Operators.Select(x => new Operator(x.Id, x.Name, x.Pwd));
         }
 
         public bool Exists(string userName)
@@ -34,12 +34,13 @@ namespace BLL
             return _context.Operators.Any(x => x.Name == userName);
         }
 
-        public void Create(string userName)
+        public void Create(string userName, string password)
         {
             _context.Operators.Add(new DAL.Models.Operator()
             {
                 Name = userName,
-                Pwd = PasswordGenerator.GeneratePwd()
+                Pwd = password
+                //Pwd = PasswordGenerator.GeneratePwd()
             });
             _context.SaveChanges();
         }

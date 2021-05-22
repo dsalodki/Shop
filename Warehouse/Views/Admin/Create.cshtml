@@ -15,12 +15,16 @@
         <thead>
         <tr>
             <th>UserName</th>
+            <th>Пароль</th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td>
                 @Html.TextBoxFor(x => x.UserName)
+            </td>
+            <td>
+                @Html.PasswordFor(x=>x.Password)
             </td>
         </tr>
         <tr>
