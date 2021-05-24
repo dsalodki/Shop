@@ -1,7 +1,7 @@
 ﻿@model ProviderViewModel
 
 @{
-    ViewBag.Title = "Edit Provider";
+    ViewBag.Title = "Изменить поставщика";
     Layout = "_Layout";
 }
 
@@ -15,7 +15,7 @@
     }
 </style>
 
-<h2>Edit Provider</h2>
+<h2>Изменение поставщика</h2>
 
 <span style="color: red">@ViewBag.Error</span>
 
@@ -26,7 +26,7 @@
         @Html.TextBoxFor(m => m.Name)
     </div>
     <div>
-        <label for="Address">Адресс</label>
+        <label for="Address">Адрес</label>
         @Html.TextBoxFor(m => m.Address)
     </div>
     <div>

@@ -21,18 +21,19 @@ namespace Warehouse.Controllers
         {
             var data = _repository.GetAll();
             StringBuilder fileData = new StringBuilder();
+            fileData.AppendLine("Категория;Название;Старая цена;Новая цена");
             foreach (var goodsByCategory in data)
             {
-                fileData.Append(goodsByCategory.CatName).Append(",");
+                fileData.Append(goodsByCategory.CatName).Append(";");
                 var i = 0;
                 foreach (var item in goodsByCategory.Items)
                 {
                     i++;
                     if (i > 1)
                     {
-                        fileData.Append(",");
+                        fileData.Append(";");
                     }
-                    fileData.AppendLine($"{i}.{item.Name},{item.Val},{item.OldPrice},{(item.NewPrice != 0 ? item.NewPrice.ToString() : string.Empty)}");
+                    fileData.AppendLine($"{i}.{item.Name};{item.Val};{item.OldPrice};{(item.NewPrice != 0 ? item.NewPrice.ToString() : string.Empty)}");
                 }
             }
             var csv = fileData.ToString();

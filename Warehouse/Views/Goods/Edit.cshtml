@@ -2,7 +2,7 @@
 @model GoodsViewModel
 
 @{
-    ViewBag.Title = "Edit Goods";
+    ViewBag.Title = "Изменение товара";
     Layout = "_Layout";
 }
 
@@ -16,7 +16,7 @@
     }
 </style>
 
-<h2>Edit Goods</h2>
+<h2>Изменение товара</h2>
 
 @using (Html.BeginForm("Edit", "Goods", FormMethod.Post, new { id = Model.Id }))
 {
